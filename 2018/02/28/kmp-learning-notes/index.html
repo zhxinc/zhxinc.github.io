@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="oi," />
 
 
 
@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="试问岭南应不好，却道，此心安处是吾乡。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="铁丝网">
-<meta property="og:url" content="http://zhxinc.github.io/archives/index.html">
+<meta name="description" content="今天正在尝试学习KMP算法。">
+<meta name="keywords" content="oi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KMP算法学习笔记（1）">
+<meta property="og:url" content="http://zhxinc.github.io/2018/02/28/kmp-learning-notes/index.html">
 <meta property="og:site_name" content="铁丝网">
-<meta property="og:description" content="试问岭南应不好，却道，此心安处是吾乡。">
+<meta property="og:description" content="今天正在尝试学习KMP算法。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-28T15:01:37.299Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="铁丝网">
-<meta name="twitter:description" content="试问岭南应不好，却道，此心安处是吾乡。">
+<meta name="twitter:title" content="KMP算法学习笔记（1）">
+<meta name="twitter:description" content="今天正在尝试学习KMP算法。">
 
 
 
@@ -118,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://zhxinc.github.io/archives/"/>
+  <link rel="canonical" href="http://zhxinc.github.io/2018/02/28/kmp-learning-notes/"/>
 
 
 
 
 
-  <title>归档 | 铁丝网</title>
+  <title>KMP算法学习笔记（1） | 铁丝网</title>
   
 
 
@@ -143,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -237,296 +239,180 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhxinc.github.io/2018/02/28/kmp-learning-notes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhxinc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="铁丝网">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">KMP算法学习笔记（1）</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-28T20:01:02+08:00">
+                2018-02-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 7 篇日志。 继续努力。
-      </span>
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
+            
+          
 
-        
+          
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/28/kmp-learning-notes/" itemprop="url">
-              
-                <span itemprop="name">KMP算法学习笔记（1）</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-28T20:01:02+08:00"
-              content="2018-02-28" >
-          02-28
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+        </div>
+      </header>
+    
 
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/27/winner-takes-it-all/" itemprop="url">
-              
-                <span itemprop="name">俄罗斯艺术体操的故事</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-27T19:07:35+08:00"
-              content="2018-02-27" >
-          02-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/26/winter-olympics-norway/" itemprop="url">
-              
-                <span itemprop="name">挪威与冬奥会</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-26T17:35:47+08:00"
-              content="2018-02-26" >
-          02-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <p>今天正在尝试学习KMP算法。<br><a id="more"></a></p>
+<h2 id="KMP算法是啥？"><a href="#KMP算法是啥？" class="headerlink" title="KMP算法是啥？"></a>KMP算法是啥？</h2><ul>
+<li>是字符串匹配算法，实现的功能是寻找在一个给定字符串A中字符串B的出现次数。</li>
+</ul>
+<h2 id="和暴力有什么区别？"><a href="#和暴力有什么区别？" class="headerlink" title="和暴力有什么区别？"></a>和暴力有什么区别？</h2><ul>
+<li><p>暴力算法就是对于A中的每一个字符，一个一个的先与B中的第一个字符比较，如果匹配，则比较下一个字符和B中的第二个字符，如果全部匹配，则成功，如果失败，则继续比较下一个字符和A中的第一个字符。</p>
+</li>
+<li><p>这个算法在随机字符的情况下表现不错。因为第一个字符匹配的概率是1/26，第二个字符则是1/676…… 越往后，概率就会越小，因此期望匹配次数是A的长度k(几乎每一次匹配都会在第一个字母中终止)，也就是复杂度为O(k)。</p>
+</li>
+<li><p>但是，如果A中是由许多和B（设B的长度为n）在前n-1个字符都匹配的字符串组成的话，就会变得十分麻烦。这样每一次都要匹配第n次才会发现并不是一个匹配，复杂度将会上升到O(n*k)</p>
+</li>
+<li><p>对于这种最坏情况，KMP算法则有比较好的表现。</p>
+</li>
+</ul>
+<h2 id="怎么做到的呢？"><a href="#怎么做到的呢？" class="headerlink" title="怎么做到的呢？"></a>怎么做到的呢？</h2><ul>
+<li><p>KMP算法记录了之前匹配的信息，就拿前面那个最坏情况的例子来说，假如你知道这n个字符和第一个字符都不匹配，就不用再用B的第一个字符和它们比较了，而是直接跳到第n+1个字符，或者假如这n-1个字符中有和B的第一个字符相同的字符，就跳到那个位置，节省了许多不必要的比较。</p>
+</li>
+<li><p>这个「之前匹配的信息」，就是用一个「部分匹配表」来维护的。</p>
+</li>
+</ul>
+<h2 id="具体的实现方式分成了两部分"><a href="#具体的实现方式分成了两部分" class="headerlink" title="具体的实现方式分成了两部分"></a>具体的实现方式分成了两部分</h2><h3 id="查找算法"><a href="#查找算法" class="headerlink" title="查找算法"></a>查找算法</h3><ul>
+<li><p>m表示当前A中开始匹配的位置</p>
+</li>
+<li><p>i表示当前B中匹配成功的个数</p>
+</li>
+<li><p>最开始的时候，比较S[m+i]和W[i]，如果相同，则增加i</p>
+</li>
+<li><p>利用「部分匹配表」下一次寻找是从m+i-T[i]位置开始的（相当于是先跳到已经匹配过的所有字符的下一个，之后再「往回跳」T[i]个，到那个可以和B的前缀匹配的后缀上，其中T[i]已经预先处理好。），但是我们其实不必查找新的前T[i]个字符，因为我们已经比较过一遍了，因此直接使m=m+i-T[i],i=T[i]即可。</p>
+</li>
+<li><p>复杂度为O(n)，因为最多会运行2n次</p>
+</li>
+</ul>
+<hr>
+<p>发现今天写不完了，明天写Part2，以及KMP模版C++代码。</p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/25/project-euler/" itemprop="url">
-              
-                <span itemprop="name">欧拉计划</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-25T21:53:18+08:00"
-              content="2018-02-25" >
-          02-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/24/after-watching-a-speech/" itemprop="url">
-              
-                <span itemprop="name">娜塔丽波特曼在哈佛毕业典礼的演讲</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-24T20:33:40+08:00"
-              content="2018-02-24" >
-          02-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/24/how-to-build-your-own-blog/" itemprop="url">
-              
-                <span itemprop="name">如何用GitPages+Hexo搭建个人博客</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-24T11:07:46+08:00"
-              content="2018-02-24" >
-          02-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/22/first-post/" itemprop="url">
-              
-                <span itemprop="name">第一篇。</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-22T19:49:18+08:00"
-              content="2018-02-22" >
-          02-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/oi/" rel="tag"># oi</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/27/winner-takes-it-all/" rel="next" title="俄罗斯艺术体操的故事">
+                <i class="fa fa-chevron-left"></i> 俄罗斯艺术体操的故事
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -534,6 +420,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -554,8 +444,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -606,6 +505,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#KMP算法是啥？"><span class="nav-number">1.</span> <span class="nav-text">KMP算法是啥？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#和暴力有什么区别？"><span class="nav-number">2.</span> <span class="nav-text">和暴力有什么区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么做到的呢？"><span class="nav-number">3.</span> <span class="nav-text">怎么做到的呢？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体的实现方式分成了两部分"><span class="nav-number">4.</span> <span class="nav-text">具体的实现方式分成了两部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查找算法"><span class="nav-number">4.1.</span> <span class="nav-text">查找算法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -739,6 +654,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
