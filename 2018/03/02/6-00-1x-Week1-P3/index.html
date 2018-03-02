@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="学习," />
+  <meta name="keywords" content="技术,学习," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="这是zhxinc的欧拉计划记录页面。">
-<meta name="keywords" content="学习">
+<meta name="description" content="今天上edX上的公开课的时候做到了这道题，觉得十分有趣。">
+<meta name="keywords" content="技术,学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="欧拉计划">
-<meta property="og:url" content="http://zhxinc.github.io/2018/02/25/project-euler/index.html">
+<meta property="og:title" content="用Python求一个字符串中最长字典序不下降的子序列">
+<meta property="og:url" content="http://zhxinc.github.io/2018/03/02/6-00-1x-Week1-P3/index.html">
 <meta property="og:site_name" content="铁丝网">
-<meta property="og:description" content="这是zhxinc的欧拉计划记录页面。">
+<meta property="og:description" content="今天上edX上的公开课的时候做到了这道题，觉得十分有趣。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-25T14:43:11.912Z">
+<meta property="og:updated_time" content="2018-03-02T13:00:25.912Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="欧拉计划">
-<meta name="twitter:description" content="这是zhxinc的欧拉计划记录页面。">
+<meta name="twitter:title" content="用Python求一个字符串中最长字典序不下降的子序列">
+<meta name="twitter:description" content="今天上edX上的公开课的时候做到了这道题，觉得十分有趣。">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://zhxinc.github.io/2018/02/25/project-euler/"/>
+  <link rel="canonical" href="http://zhxinc.github.io/2018/03/02/6-00-1x-Week1-P3/"/>
 
 
 
 
 
-  <title>欧拉计划 | 铁丝网</title>
+  <title>用Python求一个字符串中最长字典序不下降的子序列 | 铁丝网</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhxinc.github.io/2018/02/25/project-euler/">
+    <link itemprop="mainEntityOfPage" href="http://zhxinc.github.io/2018/03/02/6-00-1x-Week1-P3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhxinc">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">欧拉计划</h1>
+          <h1 class="post-title" itemprop="name headline">用Python求一个字符串中最长字典序不下降的子序列</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-25T21:53:18+08:00">
-                2018-02-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-02T20:51:47+08:00">
+                2018-03-02
               </time>
             
 
@@ -320,12 +320,18 @@
       
 
       
-        <p>这是zhxinc的<a href="https://projecteuler.net/" target="_blank" rel="noopener">欧拉计划</a>记录页面。<br><a id="more"></a></p>
-<p>立了个flag每天至少一道Project Euler题。</p>
+        <p>今天上edX上的公开课的时候做到了这道题，觉得十分有趣。<br><a id="more"></a></p>
 <hr>
-<h2 id="2-25-Problem-8"><a href="#2-25-Problem-8" class="headerlink" title="2.25 Problem 8"></a>2.25 <a href="https://projecteuler.net/problem=8" target="_blank" rel="noopener">Problem 8</a></h2><p>今天被这道题坑惨了！主要是没好好读题，题目给出的是一个1000位的数字，而不是一个20*50的矩阵，也就是说每一行之间也算是相邻的数字。（大概是做oi做多了的后遗症吧，不过这不是我不好好读题的借口，况且我也并没做多少oi题啊……）</p>
-<p>还有一个坑点是要开long long，因为答案是会超出int的范围的（int的范围是 -2^31~2^31-1,或者说-2147483648到2147483647）。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">char</span> a[<span class="number">20</span>][<span class="number">105</span>];</span><br><span class="line"><span class="keyword">int</span> <span class="built_in">map</span>[<span class="number">10005</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(<span class="built_in">map</span>,<span class="number">0</span>,<span class="keyword">sizeof</span> <span class="built_in">map</span>);</span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">20</span>;i++)</span><br><span class="line">   &#123;</span><br><span class="line">       <span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">20</span>;i++)</span><br><span class="line">   &#123;</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">50</span>;j++)</span><br><span class="line">       &#123;</span><br><span class="line">           <span class="built_in">map</span>[(i<span class="number">-1</span>)*<span class="number">50</span>+j+<span class="number">1</span>]=a[i][j]-<span class="string">'0'</span>;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">1000</span>;i++)</span><br><span class="line">   &#123;</span><br><span class="line">       <span class="keyword">long</span> <span class="keyword">long</span> cur=<span class="number">1</span>;</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> j=i;j&lt;=i+<span class="number">12</span>;j++)</span><br><span class="line">       &#123;</span><br><span class="line">           cur*=<span class="built_in">map</span>[j];</span><br><span class="line">       &#125;</span><br><span class="line">       ans=max(cur,ans);</span><br><span class="line">   &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld"</span>,ans);</span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Assume s is a string of lower case characters.</p>
+<p>Write a program that prints the longest substring of s in which the letters occur in alphabetical order. For example, if s = ‘azcbobobegghakl’, then your program should print</p>
+<p>“Longest substring in alphabetical order is: beggh”</p>
+<p>In the case of ties, print the first substring. For example, if s = ‘abcbcd’, then your program should print</p>
+<p>“Longest substring in alphabetical order is: abc”</p>
+<hr>
+<p>当然这其实只是个入门Python语言的题而已，不过毕竟是目前最难的一道，所以还是很兴奋的。</p>
+<p>要点就是，Python里面的字符可以直接比较大小</p>
+<p>顺便，按照这个课里面提交程序的惯例，s都是不定义的（测试的时候会加一句定义，类似于直接输入一个数据了吧）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">prev = <span class="string">'a'</span></span><br><span class="line">fstar = <span class="keyword">True</span></span><br><span class="line">cursn = <span class="number">0</span></span><br><span class="line">lonsn = <span class="number">0</span></span><br><span class="line">curstr = <span class="string">''</span></span><br><span class="line">lonstr = <span class="string">''</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> s:   </span><br><span class="line">    <span class="keyword">if</span> fstar == <span class="keyword">True</span> <span class="keyword">or</span> x &gt;= prev:</span><br><span class="line">        print(x,prev)</span><br><span class="line">        fstar = <span class="keyword">False</span></span><br><span class="line">        cursn += <span class="number">1</span></span><br><span class="line">        curstr += x</span><br><span class="line">        <span class="keyword">if</span> cursn &gt; lonsn:</span><br><span class="line">            lonsn = cursn</span><br><span class="line">            lonstr = curstr</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        fstar = <span class="keyword">False</span></span><br><span class="line">        curstr = x</span><br><span class="line">        cursn = <span class="number">1</span></span><br><span class="line">    prev = x</span><br><span class="line">print(<span class="string">'Longest substring in alphabetical order is: '</span>,lonstr)</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -343,6 +349,8 @@
       
         <div class="post-tags">
           
+            <a href="/tags/技术/" rel="tag"># 技术</a>
+          
             <a href="/tags/学习/" rel="tag"># 学习</a>
           
         </div>
@@ -356,8 +364,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/24/after-watching-a-speech/" rel="next" title="娜塔丽波特曼在哈佛毕业典礼的演讲">
-                <i class="fa fa-chevron-left"></i> 娜塔丽波特曼在哈佛毕业典礼的演讲
+              <a href="/2018/03/01/usaco-light-switch/" rel="next" title="USACO008NOV 光开关">
+                <i class="fa fa-chevron-left"></i> USACO008NOV 光开关
               </a>
             
           </div>
@@ -365,10 +373,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/26/winter-olympics-norway/" rel="prev" title="挪威与冬奥会">
-                挪威与冬奥会 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -420,17 +424,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -481,22 +476,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-25-Problem-8"><span class="nav-number">1.</span> <span class="nav-text">2.25 Problem 8</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
