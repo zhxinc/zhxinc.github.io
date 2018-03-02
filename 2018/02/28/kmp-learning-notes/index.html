@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="铁丝网">
 <meta property="og:description" content="今天正在尝试学习KMP算法。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-28T15:01:37.299Z">
+<meta property="og:updated_time" content="2018-03-02T13:18:16.486Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="KMP算法学习笔记（1）">
 <meta name="twitter:description" content="今天正在尝试学习KMP算法。">
@@ -349,7 +349,7 @@
 </li>
 <li><p>利用「部分匹配表」下一次寻找是从m+i-T[i]位置开始的（相当于是先跳到已经匹配过的所有字符的下一个，之后再「往回跳」T[i]个，到那个可以和B的前缀匹配的后缀上，其中T[i]已经预先处理好。），但是我们其实不必查找新的前T[i]个字符，因为我们已经比较过一遍了，因此直接使m=m+i-T[i],i=T[i]即可。</p>
 </li>
-<li><p>复杂度为O(n)，因为最多会运行2n次</p>
+<li><p>复杂度为O(n)，每次查找时要么i+1，要么往回跳T[i]个，显然T[i]&lt;i，所以最多会运行2n次</p>
 </li>
 </ul>
 <hr>
@@ -473,7 +473,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
