@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="上一部分在这里">
+<meta name="description" content="ST表，又叫稀疏表，是一种利用倍增和动态规划实现O(nlogn)预处理，O(1)查找区间最值的数据结构。">
 <meta name="keywords" content="oi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="KMP算法学习笔记(2)">
-<meta property="og:url" content="http://zhxinc.github.io/2018/03/02/kmp-learning-notes-2/index.html">
+<meta property="og:title" content="ST表学习笔记">
+<meta property="og:url" content="http://zhxinc.github.io/2018/03/03/sparse-table/index.html">
 <meta property="og:site_name" content="铁丝网">
-<meta property="og:description" content="上一部分在这里">
+<meta property="og:description" content="ST表，又叫稀疏表，是一种利用倍增和动态规划实现O(nlogn)预处理，O(1)查找区间最值的数据结构。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-02T13:58:02.659Z">
+<meta property="og:updated_time" content="2018-03-03T15:08:24.215Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="KMP算法学习笔记(2)">
-<meta name="twitter:description" content="上一部分在这里">
+<meta name="twitter:title" content="ST表学习笔记">
+<meta name="twitter:description" content="ST表，又叫稀疏表，是一种利用倍增和动态规划实现O(nlogn)预处理，O(1)查找区间最值的数据结构。">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://zhxinc.github.io/2018/03/02/kmp-learning-notes-2/"/>
+  <link rel="canonical" href="http://zhxinc.github.io/2018/03/03/sparse-table/"/>
 
 
 
 
 
-  <title>KMP算法学习笔记(2) | 铁丝网</title>
+  <title>ST表学习笔记 | 铁丝网</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhxinc.github.io/2018/03/02/kmp-learning-notes-2/">
+    <link itemprop="mainEntityOfPage" href="http://zhxinc.github.io/2018/03/03/sparse-table/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhxinc">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">KMP算法学习笔记(2)</h1>
+          <h1 class="post-title" itemprop="name headline">ST表学习笔记</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-02T21:18:34+08:00">
-                2018-03-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-03T16:30:38+08:00">
+                2018-03-03
               </time>
             
 
@@ -320,26 +320,14 @@
       
 
       
-        <p>上一部分在<a href="https://zhxinc.github.io/2018/02/28/kmp-learning-notes/">这里</a><br><a id="more"></a></p>
-<h3 id="部分匹配表"><a href="#部分匹配表" class="headerlink" title="部分匹配表"></a>部分匹配表</h3><ul>
-<li>目的是为了让这个算法对于A中的每个字符都只匹配一次。</li>
-<li>对于B中的每一个字符x，查找x’使得B[1..x]中的前x’个字母和后x’个字母完全相等。这样就可以实现直接转移，重新开始匹配的操作。</li>
-<li>显然这只和B串有关，因此可以预处理出T[x]表示T[x+1]无法匹配时，最大的x’的值。</li>
-<li>对于T[x+1],如果B[T[x]+1]==B[x+1],则T[x+1]=T[x]，否则一直后退，知道满足条件为止。</li>
-<li>惊奇的发现这也是一个往回跳的过程！</li>
-</ul>
-<h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><ul>
-<li>运用匹配算法是的分析法，可以看出算部分匹配表的复杂度是O(k)的，其中k是B的长度</li>
-<li>因此总复杂度是O(n*k)</li>
-</ul>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">char</span> A[<span class="number">2000005</span>],B[<span class="number">2000005</span>];</span><br><span class="line"><span class="keyword">int</span> nxt[<span class="number">2000005</span>];<span class="comment">//不能用next，因为是保留字</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">"%s%s"</span>,A,B);</span><br><span class="line">  nxt[<span class="number">0</span>] = nxt[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> len1 = <span class="built_in">strlen</span>(A), len2=<span class="built_in">strlen</span>(B);</span><br><span class="line">  <span class="keyword">int</span> k;</span><br><span class="line">  k = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; len2; i++) <span class="comment">//制作部分匹配表</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">while</span>(k &amp;&amp; B[i] != B[k]) k = nxt[k]; <span class="comment">//不停往回跳，直到可以匹配上为止</span></span><br><span class="line">    <span class="keyword">if</span>(B[i] == B[k]) nxt[i+<span class="number">1</span>] = ++k; <span class="comment">//如果匹配上了</span></span><br><span class="line">    <span class="keyword">else</span> nxt[i+<span class="number">1</span>]=<span class="number">0</span>; <span class="comment">//否则只能跳到第一个</span></span><br><span class="line">  &#125;</span><br><span class="line">  k = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; len1; i++) <span class="comment">//开始匹配</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">while</span>(k &amp;&amp; A[i] != B[k]) k = nxt[k];</span><br><span class="line">    <span class="keyword">if</span>(A[i] ==  B[k]) k++; <span class="comment">//匹配成功了就进行到下一位</span></span><br><span class="line">    <span class="keyword">if</span>(k == len2) <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, i - len2 + <span class="number">2</span>); <span class="comment">//输出匹配成功的起始位置，因为字符串下标从0开始，所以+2</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i&lt;= len2; i++) <span class="built_in">printf</span>(<span class="string">"%d"</span>, nxt[i]); <span class="comment">//输出nxt数组的值</span></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
-<li>这些人说的比我清楚多了……</li>
-<li><a href="http://www.matrix67.com/blog/archives/115" target="_blank" rel="noopener">matrix67</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm" target="_blank" rel="noopener">wiki</a></li>
-<li><a href="https://liam0205.me/2016/12/20/KMP-Algorithm/" target="_blank" rel="noopener">liam</a></li>
-</ul>
-<p>终于填掉这个坑！开心！</p>
+        <p>  ST表，又叫稀疏表，是一种利用倍增和动态规划实现O(nlogn)预处理，O(1)查找区间最值的数据结构。<br>  <a id="more"></a></p>
+<p>  主要是用于对付查询次数较多的情况，写起来也比线段树更加简便。</p>
+<p>  用F[i,j]表示以i为起点，长度为2^j的区间的最小值(当然也可以是最大值，这里用最小值举例)。</p>
+<p>  那么可以得出转移方程：F[i,j] = min(F[i,j-1], F[i + 1&lt;&lt;(j-1)][j-1])</p>
+<p>  初始化显然是F[i,0] = a[i]</p>
+<p>  实现查询区间(l,r)内最值的办法是把区间分成[l,l + 2^i]和[r - 2^i,r] 其中 l &lt; 2^i &lt; r。这里利用了最值区间重叠也没关系的性质。</p>
+<p>  可以预处理出所有数的log值，这样计算比较方便。</p>
+  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">100005</span>;</span><br><span class="line"><span class="keyword">int</span> f[maxn][<span class="number">20</span>];</span><br><span class="line"><span class="keyword">int</span> lg2[maxn];</span><br><span class="line"><span class="keyword">int</span> a[maxn];</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">maxx</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a&gt;b?a:b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">build_ST</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">register</span> <span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) f[i][<span class="number">0</span>] = a[i];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; <span class="number">18</span>; j++)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">register</span> <span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n - (<span class="number">1</span> &lt;&lt; j - <span class="number">1</span>); i++)</span><br><span class="line">    &#123;</span><br><span class="line">      f[i][j] = maxx( f[i][j - <span class="number">1</span>], f[i + (<span class="number">1</span> &lt;&lt; j - <span class="number">1</span>)][j - <span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">register</span> <span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++)</span><br><span class="line">      lg2[i] = lg2[i&gt;&gt;<span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">rmq</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> t = lg2[r - l + <span class="number">1</span>];</span><br><span class="line">  <span class="keyword">return</span> maxx(f[l][t], f[r - (<span class="number">1</span> &lt;&lt; t) + <span class="number">1</span>][t]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">//int n,m;</span></span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;a[i]);</span><br><span class="line">  build_ST();</span><br><span class="line">  <span class="keyword">while</span>(m--)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">int</span> l, r;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;l,&amp;r);</span><br><span class="line">    <span class="keyword">int</span> ans = rmq(l,r);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -370,8 +358,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/02/6-00-1x-Week1-P3/" rel="next" title="用Python求一个字符串中最长字典序不下降的子序列">
-                <i class="fa fa-chevron-left"></i> 用Python求一个字符串中最长字典序不下降的子序列
+              <a href="/2018/03/02/kmp-learning-notes-2/" rel="next" title="KMP算法学习笔记(2)">
+                <i class="fa fa-chevron-left"></i> KMP算法学习笔记(2)
               </a>
             
           </div>
@@ -379,10 +367,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/03/sparse-table/" rel="prev" title="ST表学习笔记">
-                ST表学习笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -434,17 +418,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -495,22 +470,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#部分匹配表"><span class="nav-number">1.</span> <span class="nav-text">部分匹配表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复杂度分析"><span class="nav-number">2.</span> <span class="nav-text">复杂度分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
