@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="oi,ac自动机," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="最近很想学ac自动机。">
+<meta name="keywords" content="oi,ac自动机">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ac自动机学习笔记">
+<meta property="og:url" content="http://zhxinc.github.io/2018/03/19/acautomation/index.html">
+<meta property="og:site_name" content="铁丝网">
+<meta property="og:description" content="最近很想学ac自动机。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://zhxinc.github.io/img/Trie树.png">
+<meta property="og:image" content="http://zhxinc.github.io/img/fail指针.png">
+<meta property="og:image" content="http://zhxinc.github.io/img/trie1.png">
+<meta property="og:image" content="http://zhxinc.github.io/img/fail1.png">
+<meta property="og:image" content="http://zhxinc.github.io/img/fail2.png">
+<meta property="og:updated_time" content="2018-03-19T12:21:18.994Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ac自动机学习笔记">
+<meta name="twitter:description" content="最近很想学ac自动机。">
+<meta name="twitter:image" content="http://zhxinc.github.io/img/Trie树.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zhxinc.github.io/2018/03/19/acautomation/"/>
+
+
+
+
+
+  <title>ac自动机学习笔记 | 铁丝网</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">铁丝网</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一个oier的记录</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhxinc.github.io/2018/03/19/acautomation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhxinc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="铁丝网">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ac自动机学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-19T18:22:23+08:00">
+                2018-03-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近很想学ac自动机。<br><a id="more"></a></p>
+<h3 id="ac自动机的用处"><a href="#ac自动机的用处" class="headerlink" title="ac自动机的用处"></a>ac自动机的用处</h3><p>  是用来进行多个模式串的匹配，比如给出m个单词，和一个含有n个字符的文章，问有多少个单词在文章里出现过。</p>
+<h3 id="Trie树"><a href="#Trie树" class="headerlink" title="Trie树"></a>Trie树</h3><p>  又叫字典树，是ac自动机实现的基础。结构是根结点什么都没有，之后下面的子节点每个节点保存一个字母，到一个被标记节点的路径上的所有字母组成一个单词。对于每个节点，它的每个子节点的字符都不一样。</p>
+<p>  <img src="/img/Trie树.png" alt="Trie树"></p>
+<p>  虽然图中节点是字符串，但实际储存的时候是单个字符。</p>
+<h3 id="构造步骤："><a href="#构造步骤：" class="headerlink" title="构造步骤："></a>构造步骤：</h3><ol>
+<li>先对于所给的单词构造一个Trie树</li>
+<li>构造fail指针，指向和当前字符串拥有最长公共后缀的字符串的结尾节点。</li>
+<li>扫描主串匹配。</li>
+</ol>
+<p><img src="/img/fail指针.png" alt="fail指针"></p>
+<p>蓝色的箭头就是fail指针。</p>
+<h3 id="例题："><a href="#例题：" class="headerlink" title="例题："></a>例题：</h3><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=2434" target="_blank" rel="noopener">bzoj2434</a></p>
+<p>要求对多组模式串进行匹配。</p>
+<h4 id="做法："><a href="#做法：" class="headerlink" title="做法："></a>做法：</h4><ol>
+<li>建Trie树</li>
+</ol>
+<p><img src="/img/trie1.png" alt="根据样例建的Trie树"></p>
+<ol>
+<li>构造fail指针。</li>
+</ol>
+<p><img src="/img/fail1.png" alt="根据样例构造的fail指针"></p>
+<ol>
+<li>初步构想：由fail指针的定义，发现如果b中有字符的fail指针指向a单词的末尾，则b中包含a。如果b中有n个节点的fail指针指向a的末尾，则a在b中出现了n次。枚举y串，每次到一个节点如果fail指针指向x的末尾，计数器就加一，得到一个复杂度为O(ML)的朴素算法。（M代表询问次数，L代表字符串长度）</li>
+<li>改进算法：对于一个x串，只有当y串中某个节点的fail指针指向它的末尾节点才算数。所以不妨直接把fail指针反向，建立一个fail树。因为每个节点fail指针只指向一个节点，因此它确实是个树。</li>
+</ol>
+<p><img src="/img/fail2.png" alt="构造的fail树"></p>
+<ol>
+<li>这样的话，一个末尾节点的子树中的节点就是包含它的字符串中的节点。同时我们还知道一个节点及其子树在dfs序中是连续的一段。</li>
+<li>对于每一个y，把关于y的询问存在领接表里面，把y所有节点在dfs序中的位置插入树状数组，之后把关于y的每一个询问在树状数组中查询一遍。</li>
+<li>“对fail树遍历一遍，得到一个DFS序，再维护一个树状数组，对原Trie树进行遍历，每访问一个节点，就修改树状数组，对树状数组中该节点的DFS序起点的位置加上1。（相当于是表示这个点存在，因为dfs头节点事实上对应的就是自己）每往回走一步，就减去1。（相当于把自己变成不存在了）如果访问到了一个y字串的末尾节点，枚举询问中每个y串对应的x串，查询树状数组中x串末尾节点从DFS序中的起始位置到结束位置的和，并记录答案。这样，我们就得到了一个时间复杂度为O(N+MlogN)的优美的算法。因为N和M都不超过105，所以这个算法是可行的。”</li>
+</ol>
+<h4 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 100000 + 5</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">int</span> nxt, v;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">mp</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">int</span> front[N], cnt;</span><br><span class="line">  Edge e[N];</span><br><span class="line">  mp() &#123;cnt = <span class="number">0</span>;&#125;</span><br><span class="line">  <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">AddEdge</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    e[++cnt].nxt = front[u];</span><br><span class="line">    e[cnt].v = v;</span><br><span class="line">    front[u] = cnt;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;fail, queries;</span><br><span class="line"><span class="comment">//两个前向星，一个用来记录fail树，一个记录询问。</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> root = <span class="number">1</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">int</span> f,son[<span class="number">26</span>],fail;</span><br><span class="line">&#125;t[N];</span><br><span class="line"><span class="comment">//trie树</span></span><br><span class="line"><span class="keyword">char</span> s[N];</span><br><span class="line"><span class="comment">//输入字符串</span></span><br><span class="line"><span class="keyword">int</span> len, tot = root, strs = <span class="number">0</span>, m;</span><br><span class="line"><span class="keyword">int</span> strNode[N];</span><br><span class="line"><span class="comment">//一个字符串对应的trie节点</span></span><br><span class="line"><span class="keyword">int</span> <span class="built_in">queue</span>[N];</span><br><span class="line"><span class="keyword">int</span> head[N], tail[N],cnt = <span class="number">0</span>;</span><br><span class="line"><span class="comment">//dfs需要的东西</span></span><br><span class="line"><span class="keyword">int</span> arr[N];</span><br><span class="line"><span class="comment">//树状数组，用来存一个节点和其子树中有多少字符串y中的节点</span></span><br><span class="line"><span class="keyword">int</span> ans[N];</span><br><span class="line"><span class="comment">//记录每次询问的结果</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span>(; x; x-= x&amp;(-x))</span><br><span class="line">    ret += arr[x];</span><br><span class="line">  <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//树状数组的询问区间和</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">modify</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> d)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(; x&lt;= cnt; x += x &amp; (-x))</span><br><span class="line">    arr[x] += d;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//树状数组的修改单点值</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  head[x] = ++cnt; <span class="comment">//头部时间戳</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = fail.front[x]; i; i = fail.e[i].nxt)</span><br><span class="line">      dfs(fail.e[i].v);</span><br><span class="line">  tail[x] = cnt; <span class="comment">//尾部时间戳</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//head，tail记录每次查询的树，并用cnt打标记。</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">"%s"</span>,s);</span><br><span class="line">  len = <span class="built_in">strlen</span>(s);</span><br><span class="line">  <span class="keyword">int</span> now = root;</span><br><span class="line">  <span class="comment">//开始输入询问，并对于询问建图</span></span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;m);</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">int</span> a, b;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;a,&amp;b);</span><br><span class="line">    queries.AddEdge(b, a);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//建trie</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; ++i)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> (s[i] == <span class="string">'P'</span>) strNode[++strs] = now; <span class="comment">//建立新的单词，标记末尾节点。</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (s[i] == <span class="string">'B'</span>) now = t[now].f; <span class="comment">//当前点跳回父节点</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> (t[now].son[s[i]-<span class="string">'a'</span>]) now = t[now].son[s[i]-<span class="string">'a'</span>]; <span class="comment">//如果有了这个字母的子节点，就直接跳到这个子节点上。</span></span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">int</span> cur = now; <span class="comment">//否则新建一个节点，编号为++tot，父节点为当前节点</span></span><br><span class="line">        t[now = t[now].son[s[i]-<span class="string">'a'</span>] = ++tot].f =  cur;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//开始建立fail指针和fail树</span></span><br><span class="line">  <span class="keyword">int</span> l = <span class="number">0</span>, r = <span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">26</span>; ++i)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> (t[root].son[i]) <span class="comment">//根结点的孩子的fail指针直接指向根结点，并把它们加入队列</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="built_in">queue</span>[++r] = t[root].son[i];</span><br><span class="line">      fail.AddEdge(root, <span class="built_in">queue</span>[r]);</span><br><span class="line">      t[<span class="built_in">queue</span>[r]].fail = root;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span>(; l &lt;= r; ++l) <span class="comment">//遍历队列</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">26</span>; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span>(t[<span class="built_in">queue</span>[l]].son[i]) <span class="comment">//遍历每个子节点</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">queue</span>[++r] = t[<span class="built_in">queue</span>[l]].son[i]; <span class="comment">//加入队列</span></span><br><span class="line">        <span class="keyword">for</span> (now = t[<span class="built_in">queue</span>[l]].fail; now != root &amp;&amp; !t[now].son[i]; now = t[now].fail); <span class="comment">//不断寻找当前点的父节点fail指针指向的点，直到找到一个点的子节点的值与当前点的值相同。（fail指针保证了前面的各个位已经相同）</span></span><br><span class="line">        t[<span class="built_in">queue</span>[r]].fail = t[now].son[i] ? t[now].son[i] : root; <span class="comment">//如果有的话，fail指针就指向那个节点</span></span><br><span class="line">        fail.AddEdge(t[<span class="built_in">queue</span>[r]].fail, <span class="built_in">queue</span>[r]); <span class="comment">//加边，建fail树</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">    dfs(root); <span class="comment">//求dfs序</span></span><br><span class="line">    now = root, strs = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; ++i) <span class="comment">//开始处理询问</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> (s[i] == <span class="string">'B'</span>) <span class="comment">//如果删掉了就把当前dfs头的值-1</span></span><br><span class="line">      &#123;</span><br><span class="line">        modify(head[now], <span class="number">-1</span>);</span><br><span class="line">        now = t[now].f;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span> (s[i] != <span class="string">'P'</span>) <span class="comment">//否则跳到trie里面的这个点，并把dfs头+1</span></span><br><span class="line">      &#123;</span><br><span class="line">        now = t[now].son[s[i]-<span class="string">'a'</span>];</span><br><span class="line">        modify(head[now], <span class="number">1</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span> <span class="comment">//如果到了一个字符串的结尾 就处理与它有关的询问。strs表示当前字符串编号</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x = queries.front[++strs]; x; x = queries.e[x].nxt)</span><br><span class="line">          ans[x] = query(tail[strNode[queries.e[x].v]]) - query(head[strNode[queries.e[x].v]] - <span class="number">1</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i&lt;=m; ++i) <span class="comment">//离线算法最后的统一输出结果</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans[i]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="主要参考："><a href="#主要参考：" class="headerlink" title="主要参考："></a>主要参考：</h4><p>  <a href="http://blog.csdn.net/huzecong/article/details/7769988" target="_blank" rel="noopener">这里</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/oi/" rel="tag"># oi</a>
+          
+            <a href="/tags/ac自动机/" rel="tag"># ac自动机</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/19/bzoj1179/" rel="next" title="bzoj1179 ATM">
+                <i class="fa fa-chevron-left"></i> bzoj1179 ATM
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">zhxinc</p>
+              <p class="site-description motion-element" itemprop="description">试问岭南应不好，却道，此心安处是吾乡。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ac自动机的用处"><span class="nav-number">1.</span> <span class="nav-text">ac自动机的用处</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Trie树"><span class="nav-number">2.</span> <span class="nav-text">Trie树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造步骤："><span class="nav-number">3.</span> <span class="nav-text">构造步骤：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例题："><span class="nav-number">4.</span> <span class="nav-text">例题：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#做法："><span class="nav-number">4.1.</span> <span class="nav-text">做法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码："><span class="nav-number">4.2.</span> <span class="nav-text">代码：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主要参考："><span class="nav-number">4.3.</span> <span class="nav-text">主要参考：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhxinc</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
