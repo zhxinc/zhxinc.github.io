@@ -28,16 +28,16 @@
 <meta property="og:site_name" content="铁丝网">
 <meta property="og:description" content="最近很想学ac自动机。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://zhxinc.github.io/img/Trie树.png">
-<meta property="og:image" content="http://zhxinc.github.io/img/fail指针.png">
-<meta property="og:image" content="http://zhxinc.github.io/img/trie1.png">
-<meta property="og:image" content="http://zhxinc.github.io/img/fail1.png">
-<meta property="og:image" content="http://zhxinc.github.io/img/fail2.png">
+<meta property="og:image" content="http://zhxinc.github.io/2018/03/19/acautomation/Trie树.png">
+<meta property="og:image" content="http://zhxinc.github.io/2018/03/19/acautomation/fail指针.png">
+<meta property="og:image" content="http://zhxinc.github.io/2018/03/19/acautomation/trie1.png">
+<meta property="og:image" content="http://zhxinc.github.io/2018/03/19/acautomation/fail1.png">
+<meta property="og:image" content="http://zhxinc.github.io/2018/03/19/acautomation/fail2.png">
 <meta property="og:updated_time" content="2018-03-19T14:52:05.526Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ac自动机学习笔记">
 <meta name="twitter:description" content="最近很想学ac自动机。">
-<meta name="twitter:image" content="http://zhxinc.github.io/img/Trie树.png">
+<meta name="twitter:image" content="http://zhxinc.github.io/2018/03/19/acautomation/Trie树.png">
 
 <link rel="canonical" href="http://zhxinc.github.io/2018/03/19/acautomation/">
 
@@ -209,23 +209,23 @@
         <p>最近很想学ac自动机。<br><a id="more"></a></p>
 <h3 id="ac自动机的用处"><a href="#ac自动机的用处" class="headerlink" title="ac自动机的用处"></a>ac自动机的用处</h3><p>  是用来进行多个模式串的匹配，比如给出m个单词，和一个含有n个字符的文章，问有多少个单词在文章里出现过。</p>
 <h3 id="Trie树"><a href="#Trie树" class="headerlink" title="Trie树"></a>Trie树</h3><p>  又叫字典树，是ac自动机实现的基础。结构是根结点什么都没有，之后下面的子节点每个节点保存一个字母，到一个被标记节点的路径上的所有字母组成一个单词。对于每个节点，它的每个子节点的字符都不一样。</p>
-<p>  <img src="/img/Trie树.png" alt="Trie树"></p>
+<p>  <img src="/2018/03/19/acautomation/Trie树.png" alt="Trie树"></p>
 <p>  虽然图中节点是字符串，但实际储存的时候是单个字符。</p>
 <h3 id="构造步骤："><a href="#构造步骤：" class="headerlink" title="构造步骤："></a>构造步骤：</h3><ol>
 <li>先对于所给的单词构造一个Trie树</li>
 <li>构造fail指针，指向和当前字符串拥有最长公共后缀的字符串的结尾节点。</li>
 <li>扫描主串匹配。</li>
 </ol>
-<p><img src="/img/fail指针.png" alt="fail指针"></p>
+<p><img src="/2018/03/19/acautomation/fail指针.png" alt="fail指针"></p>
 <p>蓝色的箭头就是fail指针。</p>
 <h3 id="例题："><a href="#例题：" class="headerlink" title="例题："></a>例题：</h3><h4 id="bzoj2434"><a href="#bzoj2434" class="headerlink" title="bzoj2434"></a><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=2434" target="_blank" rel="noopener">bzoj2434</a></h4><p>要求对多组模式串进行匹配。</p>
 <h5 id="做法："><a href="#做法：" class="headerlink" title="做法："></a>做法：</h5><p>1.建Trie树</p>
-<p><img src="/img/trie1.png" alt="根据样例建的Trie树"></p>
+<p><img src="/2018/03/19/acautomation/trie1.png" alt="根据样例建的Trie树"></p>
 <p>2.构造fail指针。</p>
-<p><img src="/img/fail1.png" alt="根据样例构造的fail指针"></p>
+<p><img src="/2018/03/19/acautomation/fail1.png" alt="根据样例构造的fail指针"></p>
 <p>3.初步构想：由fail指针的定义，发现如果b中有字符的fail指针指向a单词的末尾，则b中包含a。如果b中有n个节点的fail指针指向a的末尾，则a在b中出现了n次。枚举y串，每次到一个节点如果fail指针指向x的末尾，计数器就加一，得到一个复杂度为O(ML)的朴素算法。（M代表询问次数，L代表字符串长度）</p>
 <p>4.改进算法：对于一个x串，只有当y串中某个节点的fail指针指向它的末尾节点才算数。所以不妨直接把fail指针反向，建立一个fail树。因为每个节点fail指针只指向一个节点，因此它确实是个树。</p>
-<p><img src="/img/fail2.png" alt="构造的fail树"></p>
+<p><img src="/2018/03/19/acautomation/fail2.png" alt="构造的fail树"></p>
 <p>5.这样的话，一个末尾节点的子树中的节点就是包含它的字符串中的节点。同时我们还知道一个节点及其子树在dfs序中是连续的一段。</p>
 <p>6.对于每一个y，把关于y的询问存在领接表里面，把y所有节点在dfs序中的位置插入树状数组，之后把关于y的每一个询问在树状数组中查询一遍。</p>
 <p>7.“对fail树遍历一遍，得到一个DFS序，再维护一个树状数组，对原Trie树进行遍历，每访问一个节点，就修改树状数组，对树状数组中该节点的DFS序起点的位置加上1。（相当于是表示这个点存在，因为dfs头节点事实上对应的就是自己）每往回走一步，就减去1。（相当于把自己变成不存在了）如果访问到了一个y字串的末尾节点，枚举询问中每个y串对应的x串，查询树状数组中x串末尾节点从DFS序中的起始位置到结束位置的和，并记录答案。这样，我们就得到了一个时间复杂度为O(N+MlogN)的优美的算法。因为N和M都不超过105，所以这个算法是可行的。”</p>
