@@ -184,7 +184,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-03-14 19:36:01 / 修改时间：19:50:36" itemprop="dateCreated datePublished" datetime="2021-03-14T19:36:01+01:00">2021-03-14</time>
+              <time title="创建时间：2021-03-14 19:36:01 / 修改时间：22:32:42" itemprop="dateCreated datePublished" datetime="2021-03-14T19:36:01+01:00">2021-03-14</time>
             </span>
 
           
@@ -200,9 +200,9 @@
       
           <p>纪念一下第一次参加CTF比赛。团队赛变单人赛有一点点无力……<br>解出了三道题。排名如图。</p>
 <p><img src="/2021/03/14/dvctfwriteup/dvctf.png" alt="成绩"></p>
-<p><strong>obfuscation</strong><br>顾名思义把网页上的javascript放进<img src="/2021/03/14/dvctfwriteup/jsnice.com" alt="jsnice.com">之后观察一番（然而我花了一个小时……）可以看出密码是unescape()一串字符，于是操作一下即可。</p>
-<p><strong>Decode</strong><br>hint: This can be solved by a web page.又是法国人出的题目，那么一定是<img src="/2021/03/14/dvctfwriteup/en" alt="dcode.fr">.不过一个一个点开试了半天才发现页边栏有个<img src="https://www.dcode.fr/cipher-identifier" alt="cipher-identifier">把密码粘贴进去尝试一番就找到了Uuencode: dvCTF{w3b_3ncryp710n}</p>
-<p><strong>Substitution</strong><br>应该是在做picoCTF的题的时候学到了substitution cipher于是找到<img src="https://www.dcode.fr/monoalphabetic-substitution" alt="substitutioncipherdecoder">. DVCTF{CR1PT3D_C1PH3R}</p>
+<p><strong>obfuscation</strong><br>顾名思义把网页上的javascript放进<a href="jsnice.com">jsnice.com</a>之后观察一番（然而我花了一个小时……）可以看出密码是unescape()一串字符，于是操作一下即可。</p>
+<p><strong>Decode</strong><br>hint: This can be solved by a web page.又是法国人出的题目，那么一定是<a href="dcode.fr/en">dcode.fr</a>.不过一个一个点开试了半天才发现页边栏有个<a href="https://www.dcode.fr/cipher-identifier" target="_blank" rel="noopener">cipher-identifier</a>把密码粘贴进去尝试一番就找到了Uuencode: dvCTF{w3b_3ncryp710n}</p>
+<p><strong>Substitution</strong><br>应该是在做picoCTF的题的时候学到了substitution cipher于是找到<a href="https://www.dcode.fr/monoalphabetic-substitution" target="_blank" rel="noopener">substitutioncipherdecoder</a>. DVCTF{CR1PT3D_C1PH3R}</p>
 <p>总结一下，这三道题的共同点是仅仅基于网页。所以希望picoCTF的时候可以用软件或者编程解题……</p>
 <p>接下来也会去学习其他题的做法补充进来。</p>
 
